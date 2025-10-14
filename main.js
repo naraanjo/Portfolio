@@ -1,70 +1,142 @@
-const messages = [
-  "¡Vaya! Un junior💻✨",
-  "Pero, con muchisimas ganas de aprender🚀",
-  "Curiosioso, creativo y disciplinado 🔥",
-  "¡Bienvenido a mi portfolio! 🎉"
-];
+// Animación de cards al hacer scroll :cite[3]
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{threshold:0.2});
 
-const container = document.getElementById("welcome-container");
-const minDistance = 25; // MUCHÍSIMA más distancia entre pop-ups (en vh/vw)
+cards.forEach(card => observer.observe(card));
 
-function getRandomPosition(existingPositions) {
-  let top, left;
-  let safe = false;
+// Efecto de scroll suave para navegación
+document.querySelectorAll('.navbar-right a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        window.scrollTo({
+            top: targetSection.offsetTop - 80,
+            behavior: 'smooth'
+        });
+    });
+});
 
-  while (!safe) {
-    top = Math.random() * 50 + 10;  // 10% a 60% vertical
-    left = Math.random() * 50 + 10; // 10% a 60% horizontal
-
-    safe = true;
-    for (const pos of existingPositions) {
-      const dx = Math.abs(left - pos.left);
-      const dy = Math.abs(top - pos.top);
-      if (dx < minDistance && dy < minDistance) {
-        safe = false; // demasiado cerca, generar otra posición
-        break;
-      }
+// Sistema de partículas naranjas para el fondo del hero
+function createParticles() {
+    const heroSection = document.querySelector('.hero');
+    const particlesCount = 20;
+    
+    // Crear elementos de partículas
+    for(let i = 0; i < particlesCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Posición aleatoria
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        
+        // Tamaño aleatorio entre 3px y 8px
+        const size = Math.random() * 5 + 3;
+        
+        // Duración de animación aleatoria
+        const duration = Math.random() * 20 + 10;
+        
+        // Estilos de la partícula
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 111, 97, 0.6);
+            border-radius: 50%;
+            top: ${posY}%;
+            left: ${posX}%;
+            pointer-events: none;
+            animation: floatParticle ${duration}s linear infinite;
+            animation-delay: ${Math.random() * 5}s;
+            box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+        `;
+        
+        heroSection.appendChild(particle);
     }
-  }
-
-  return { top, left };
+    
+    // Añadir keyframes para la animación de flotación
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes floatParticle {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
-window.addEventListener("load", () => {
-  let delay = 0;
-  const positions = []; // posiciones de pop-ups ya creados
+// Inicializar partículas cuando la página cargue
+window.addEventListener('load', createParticles);
 
-  messages.forEach(msg => {
-    setTimeout(() => {
-      const popup = document.createElement("div");
-      popup.className = "welcome-popup";
-      popup.textContent = msg;
+// Efecto de escritura para el título (mejorado)
+const heroTitle = document.querySelector('.hero-title');
+const originalText = heroTitle.textContent;
 
-      // Generar posición segura con más distancia
-      const pos = getRandomPosition(positions);
-      popup.style.top = `${pos.top}vh`;
-      popup.style.left = `${pos.left}vw`;
+function typeWriter() {
+    heroTitle.textContent = '';
+    let charIndex = 0;
+    
+    function type() {
+        if(charIndex < originalText.length) {
+            heroTitle.textContent += originalText.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+        }
+    }
+    type();
+}
 
-      container.appendChild(popup);
-      positions.push(pos); // guardar posición
+// Iniciar efecto de escritura con retraso
+setTimeout(typeWriter, 500);
 
-      // Animación de entrada
-      requestAnimationFrame(() => {
-        popup.classList.add("show");
-      });
+// Efecto parallax mejorado para el hero
+const hero = document.querySelector('.hero');
+window.addEventListener('scroll', ()=>{
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * 0.5;
+    hero.style.transform = `translateY(${rate}px)`;
+});
 
-      // Desaparecer después de 5 segundos
-      setTimeout(() => {
-        popup.classList.remove("show");
-        popup.classList.add("hide");
+// Añadir clase active al navbar según scroll
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.navbar-right a');
 
-        setTimeout(() => {
-          container.removeChild(popup);
-        }, 800);
-      }, 5000);
-
-    }, delay);
-
-    delay += 2500; // más intervalo para que no aparezcan juntos
-  });
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if(pageYOffset >= (sectionTop - 100)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
 });

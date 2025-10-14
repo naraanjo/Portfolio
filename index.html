@@ -1,369 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--Bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!--Iconos de bootsrap-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <!--CSS-->
-  <link rel="stylesheet" href="style.css">
-  <!--Titulo-->
-  <title>Álvaro Naranjo | Desarrollo</title>
-
-  <!--Google fonts-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Álvaro Naranjo | Portfolio Profesional</title>
+  <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Dirt&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" />
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-  <!-- Contenedor de notificaciones -->
-  <div id="welcome-container"></div>
-  
-
-  <!--Barra de navegacion-->
-  <nav class="navbar navbar-expand-md navbar-light ">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar-toggler">
-        <!--Logo personal-->
-        <a class="navbar-brand" href="https://github.com/naraanjo">
-          <img src="resources/icons/iconoNaranjo.png" width="50">
-        </a>
-
-        <!--Lista con los enlaces-->
-        <ul class="navbar-nav d-flex justify-content-center align-items-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#sobre-mi">Sobre mí</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#proyectos">Proyectos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#soft-skills">Habilidades</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacto</a>
-          </li>
-        </ul>
-
-      </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">Álvaro Naranjo</div>
+    <div class="navbar-right">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#softskills">Soft Skills</a>
+      <a href="#tecnologias">Tecnologías</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto" class="nav-contact">Contacto</a>
     </div>
   </nav>
 
-  <!--Seccion Hero-->
-  <section class="hero align-items-stretch">
-    <div class="hero-principal d-flex flex-column justify-content-center align-items-center">
-      <img class="alvaro-imagen" src="resources/imgs/yoIA.png" alt="Foto de Álvaro Naranjo">
-      <h1>Hola, soy Álvaro Naranjo</h1>
-
-      <div class="redes-container">
-        <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" target="_blank"
-          aria-label="LinkedIn">
-          <i class="bi bi-linkedin"></i>
-        </a>
-
-        <a href="https://github.com/naraanjo" target="_blank" aria-label="GitHub">
-          <i class="bi bi-github"></i>
-        </a>
-
-        <a href="mailto:naranjodev06@gmail.com" aria-label="Correo">
-          <i class="bi bi-envelope"></i>
-        </a>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <img src="resources/imgs/yo.jfif" alt="Álvaro Naranjo" class="hero-img" />
+      <h1 class="hero-title">Hola, soy Álvaro Naranjo</h1>
+      <p class="hero-subtitle">Junior Developer | Apasionado por la tecnología y el aprendizaje continuo</p>
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/"><i
+            class="bi bi-linkedin"></i><span>LinkedIn</span></a>
+        <a href="https://github.com/naraanjo"><i class="bi bi-github"></i><span>GitHub</span></a>
+        <a href="mailto:naranjodev06@gmail.com"><i class="bi bi-envelope"></i><span>Email</span></a>
       </div>
     </div>
+  </header>
 
-    <!--Sobre mi-->
-    <section class="sobre-mi seccion-oscura" id="sobre-mi">
-
-      <div class="contenedor">
-        <h2 class="seccion-titulo ">Sobre mí</h2>
-
-        <p class="seccion-texto2 italic">"Lo que empezó como un hobby de trastear con PCs, hoy es mi camino hacia ser
-          mejor desarrollador"</p>
-        <p class="seccion-texto2 emoji">📚 Actualmente curso Máster en IA | B2 de Alemán - Goethe-Zertifikat</p>
-        <p class="seccion-texto2 emoji">🛠️ Aprendizaje constante
-        </p>
-
-      </div>
-    </section>
-
-
-
+  <!-- Sobre mí -->
+  <section id="sobre-mi" class="section">
+    <h2 class="section-title">Sobre mí</h2>
+    <p class="section-text">Lo que empezó como un hobby de trastear con PCs, hoy es mi camino hacia ser mejor
+      desarrollador.</p>
+    <div class="about-details">
+      <p>📚 DAM | B2 de Inglés – Trinity College London</p>
+      <p>🛠️ Aprendizaje constante en nuevas tecnologías y frameworks</p>
+    </div>
   </section>
 
+  <!-- Soft Skills -->
+  <section id="softskills" class="section">
+    <h2 class="section-title">Soft Skills</h2>
+    <div class="cards-container">
+      <div class="card">
+        <i class="bi bi-people-fill card-icon"></i>
+        <h5>Trabajo en Equipo & Colaboración</h5>
+        <p>Capacidad para integrarme en equipos multidisciplinares</p>
+        <div class="skill-details">
+          <ul>
+            <li>Participación activa en reuniones ágiles y retrospectivas</li>
+            <li>Comunicación efectiva con otros desarrolladores</li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="card">
+        <i class="bi bi-clock-fill card-icon"></i>
+        <h5>Gestión del Tiempo & Priorización</h5>
+        <p>Capacidad para organizar tareas según su urgencia e importancia</p>
+        <div class="skill-details">
+          <ul>
+            <li>Estimación realista de tiempos de desarrollo</li>
+            <li>Uso de herramientas como Trello o Jira </li>
+            <li>Exigente con los plazos de entrega</li>
+          </ul>
+        </div>
+      </div>
 
-  <div class="hero-inferior">
-    <h1 class="hero-title">Tecnologías</h1>
-    <hr class="hero-divider">
+      <div class="card">
+        <i class="bi bi-arrow-repeat card-icon"></i>
+        <h5>Adaptabilidad & Aprendizaje Continuo</h5>
+        <p>Mentalidad de crecimiento y adaptación tecnológica</p>
+        <div class="skill-details">
+          <ul>
+            <li><strong>EXTREMADAMENTE</strong> adaptable como sello personal</li>
+            <li>Capacidad para pivotar en diferentes ámbitos</li>
+            <li>Aprendizaje autodidacta </li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="card">
+        <i class="bi bi-chat-dots-fill card-icon"></i>
+        <h5>Comunicación Técnica & Claridad</h5>
+        <p>Comunicación fluida y acción constante definen mi forma de trabajar</p>
+        <div class="skill-details">
+          <ul>
+            <li>Explicación clara de soluciones a clientes y equipos</li>
+            <li>Comunicación fluida en entornos colaborativos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tecnologías -->
+  <section id="tecnologias" class="section tech-section">
+    <h2 class="section-title">Tecnologías</h2>
     <div class="tech-container">
-      <p class="seccion-texto">⚡ Front-End</p>
-      <div class="tech-grid">
-        <div class="icon-card"><img src="resources/icons/angular.svg" alt="Angular"></div>
-        <div class="icon-card"><img src="resources/icons/bootstrap.svg" alt="Bootstrap"></div>
-      </div>
-
-      <p class="seccion-texto">💻 Back-End</p>
-      <div class="tech-grid">
-        <div class="icon-card"><img src="resources/icons/icons8-laravel-50.png" alt="Laravel"></div>
-        <div class="icon-card"><img src="resources/icons/icons8-java.svg" alt="Java"></div>
-        <div class="icon-card"><img src="resources/icons/icons8-c.svg" alt="C"></div>
-        <div class="icon-card"><img src="resources/icons/icons8-kotlin.svg" alt="Kotlin"></div>
-        <div class="icon-card"><img src="resources/icons/mysql.svg" alt="MySQL"></div>
-      </div>
-
-      <p class="seccion-texto">🌍 Control de versiones</p>
-      <div class="tech-grid">
-        <div class="icon-card"><img src="resources/icons/icons8-github-48.png" alt="GitHub"></div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-  <!--Experiencia-->
-  <h2 class="fw-bold2 animate-lines" id="soft-skills">📚Logros académicos</h2>
-
-  <section class="experiencia seccion-clara">
-
-    <div class="container text-center">
-
-      <div class="row">
-        <!--Desarrollo Web-->
-        <div class="columna col-12 col-md-6 experiencia">
-          <i class="bi bi-laptop icono"></i>
-
-          <ul class="experiencia-lista">
-            <li>
-              <strong>Grado en Ingeniería Informática - ESI</strong>
-            </li>
-            <li>
-              Desarrollo de aplicaciones multiplataforma - 2025
-            </li>
-            <li>
-              Salesforce Bootcamp (CRM, Marketing Cloud, Agentforce & Data Cloud)
-            </li>
-
-          </ul>
+      <div class="tech-icons">
+        <div class="tech-item">
+          <img src="resources/icons/icons8-angular-color-96.png" alt="Angular" />
+          <span class="tech-name">Angular</span>
         </div>
-        <!--Idiomas-->
-        <div class="columna col-12 col-md-6 experiencia">
-          <img src="resources/icons/idioma.svg" alt="Idiomas" class="icono">
-          <strong>Languages</strong>
-
-          <ul class="experiencia-lista">
-
-            <li>
-              Trinity College London Integrated Skills in English III (ISE III)
-            </li>
-            <li>
-              Goethe-Zertifikat B1
-            </li>
-            <li class="descripcion">
-              My code and I are fluent in English and German
-            </li>
-          </ul>
-
-          <div class="badges-contenedor">
-
-            <span class="badge text-bg-primary">English</span>
-            <span class="badge text-bg-primary">Spanish</span>
-            <span class="badge text-bg-primary">Deutsch</span>
-
-          </div>
-
-
-
+        <div class="tech-item">
+          <img src="resources/icons/boootstrap.png" alt="Bootstrap" />
+          <span class="tech-name">Bootstrap</span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/laravel.png" alt="Laravel" />
+          <span class="tech-name">Laravel</span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/icons8-java.svg" alt="Java" />
+          <span class="tech-name">Java</span>
         </div>
       </div>
-
-
-
+      <div class="tech-icons">
+        <div class="tech-item">
+          <img src="resources/icons/c.png" alt="C#" />
+          <span class="tech-name">C</span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/icons8-kotlin.svg" alt="Kotlin" />
+          <span class="tech-name">Kotlin</span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/mySql.png" alt="MySQL" />
+          <span class="tech-name">MySQL</span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/icons8-github-48.png" alt="GitHub" />
+          <span class="tech-name">GitHub </span>
+        </div>
+        <div class="tech-item">
+          <img src="resources/icons/git.png" alt="GitHub" />
+          <span class="tech-name"> Git</span>
+        </div>
+      </div>
     </div>
-    </div>
-
   </section>
 
-  <!-- Soft Skills -->
-  <!-- Soft Skills -->
-  <div class="soft-skills">
-    <div class="container text-center mb-4">
-      <h2 class="fw-bold2 animate-lines" id="soft-skills">⚡ Soft Skills</h2>
+  <!-- Proyectos -->
+  <section id="proyectos" class="section">
+    <h2 class="section-title">Proyectos</h2>
+    <div class="cards-container">
+      <div class="card project-card">
+        <img src="resources/imgs/proyecto1.png" alt="Proyecto 1" />
+        <h5>Proyecto 1</h5>
+        <p>Descripción breve del proyecto, tecnologías usadas y objetivos logrados.</p>
+        <a href="#" class="btn">Ver proyecto</a>
+      </div>
+      <div class="card project-card">
+        <img src="resources/imgs/proyecto2.png" alt="Proyecto 2" />
+        <h5>Proyecto 2</h5>
+        <p>Descripción breve del proyecto, tecnologías usadas y objetivos logrados.</p>
+        <a href="#" class="btn">Ver proyecto</a>
+      </div>
     </div>
+  </section>
 
-    <div class="grid-wrap px-3">
-      <div class="tablero">
-        <div class="row g-4">
-
-          <!-- Tarjeta 1 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false" aria-label="Trabajo en equipo">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">🤝</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Trabajo en equipo</h5>
-                    <p class="skill-desc">Colaboro con empatía y claridad, aportando y aprendiendo en cada sprint</p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“No hay 'yo' en el stack, sólo 'nosotros'”</div>
-                  <div class="back-sub">Mejoro resultados compartiendo ideas y escuchando las de los demás</div>
-                </div>
-              </div>
+  <!-- Contacto -->
+  <section id="contacto" class="section contact-section">
+    <div class="section-header">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-subtitle">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Conectemos</h3>
+        <p>Estoy siempre abierto a discutir nuevas oportunidades, proyectos innovadores o cualquier idea que tengas en mente. No dudes en ponerte en contacto.</p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:naranjodev06@gmail.com">naranjodev06@gmail.com</a>
             </div>
           </div>
-
-          <!-- Tarjeta 2 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false"
-              aria-label="Resolución de problemas">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">💡</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Resolución de problemas</h5>
-                    <p class="skill-desc">Transformo errores y dudas en soluciones prácticas y limpias</p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“Cada bug es un acertijo con recompensa”</div>
-                  <div class="back-sub">Disfruto descomponer problemas y diseñar la salida más elegante</div>
-                </div>
-              </div>
+          <div class="contact-method">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <h4>Ubicación</h4>
+              <p>Madrid, España</p>
             </div>
           </div>
+        </div>
 
-          <!-- Tarjeta 3 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false"
-              aria-label="Gestión del tiempo">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">⏱️</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Gestión del tiempo</h5>
-                    <p class="skill-desc">Organizo tareas y priorizo para entregar valor con constancia</p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“Más producto, menos prisa”</div>
-                  <div class="back-sub">Planifico con foco para maximizar impacto sin quemarme</div>
-                </div>
-              </div>
-            </div>
+        <div class="social-links">
+          <p>Sígueme en mis redes:</p>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" class="contact-link">
+              <i class="bi bi-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/naraanjo" class="contact-link">
+              <i class="bi bi-github"></i>
+              <span>GitHub</span>
+            </a>
           </div>
+        </div>
+      </div>
 
-          <!-- Tarjeta 4 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false"
-              aria-label="Comunicación en inglés y alemán">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">🌍</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Comunicación en inglés y alemán</h5>
-                    <p class="skill-desc">Puedo leer documentación, comunicarme y colaborar con equipos internacionales
-                    </p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“Mi código usa inglés, alemán y español — al igual que yo”</div>
-                  <div class="back-sub">Listo para integrarme en proyectos globales</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta 5 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false"
-              aria-label="Aprendizaje continuo">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">🚀</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Aprendizaje continuo</h5>
-                    <p class="skill-desc">Me actualizo con frameworks, buenas prácticas y nuevas ideas constantemente
-                    </p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“Si no aprendo hoy, me quedo un paso atrás mañana”</div>
-                  <div class="back-sub">Curiosidad técnica y práctica diaria para mejorar "mi stack"</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta 6 -->
-          <div class="col-12 col-md-6 col-lg-4 d-flex">
-            <div class="flip-card w-100" tabindex="0" role="button" aria-pressed="false" aria-label="Proactividad">
-              <div class="flip-card-inner">
-                <div class="flip-card-front d-flex flex-column justify-content-center align-items-center">
-                  <div class="icon">⚡</div>
-                  <div class="content text-center">
-                    <h5 class="skill-title">Proactividad</h5>
-                    <p class="skill-desc">Anticipo problemas y propongo soluciones antes de que se pidan</p>
-                  </div>
-                </div>
-                <div class="flip-card-back d-flex flex-column justify-content-center align-items-center">
-                  <div class="back-phrase">“Propongo, pruebo y presento resultados”</div>
-                  <div class="back-sub">Me gusta tomar la iniciativa y convertir ideas en pruebas reales</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- /row -->
-      </div> <!-- /tablero -->
-    </div> <!-- /grid-wrap -->
-  </div>
-
-
-  </div>
-
-
-  <div class="proyectos-contenedor d-flex flex-column justify-content-center align-items-center" id="proyectos">
-    <h1 class="seccion-titulo ">Proyectos</h1>
-    <p class="seccion-descripcion ">Trabajo en progreso: innovación que se publicará pronto</p>
-
-
-  </div>
-
-  <div class="redes-container">
-    <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" target="_blank"
-      aria-label="LinkedIn">
-      <i class="bi bi-linkedin"></i>
-    </a>
-
-    <a href="https://github.com/naraanjo" target="_blank" aria-label="GitHub">
-      <i class="bi bi-github"></i>
-    </a>
-
-    <a href="mailto:naranjodev06@gmail.com" aria-label="Correo">
-      <i class="bi bi-envelope"></i>
-    </a>
-  </div>
-  </div>
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID" method="POST">
+        <h3>Envíame un mensaje</h3>
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input type="text" id="name" name="name" required placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="email">Tu email</label>
+          <input type="email" id="email" name="email" required placeholder="email@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Cuéntame sobre tu proyecto..."></textarea>
+        </div>
+        <button type="submit" class="btn submit-btn">Enviar mensaje</button>
+      </form>
+    </div>
   </section>
 
   <script src="main.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
