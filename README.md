@@ -1,27 +1,23 @@
-# 🧑‍💻 Portfolio Personal
+🧑‍💻 Personal Portfolio
 
-🚧 **En desarrollo**
+🚧 Under Development
 
----
+✨ Description
 
-## ✨ Descripción
+Developed with Bootstrap, JavaScript, and CSS, this portfolio features a responsive structure adaptable to different devices. The contact form is managed through Formspree, allowing secure email submissions without the need for a backend.
 
-Desarrollado con **Bootstrap**, **JavaScript** y **CSS**, este portfolio presenta una estructura adaptable a distintos dispositivos. La gestión de formularios de contacto se realiza mediante **Formspree**, permitiendo el envío de correos electrónicos de forma segura y sin necesidad de backend.
+🛠 Technologies and Tools
 
----
+Frontend: HTML, CSS, JavaScript, Bootstrap
 
-## 🛠 Tecnologías y herramientas
+UI Design: Figma
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Diseño UI**: Figma
-- **Email**: Formspree
+Email: Formspree
 
----
+🌐 Live Demo
 
-## 🌐 Demo en línea
+You can view the portfolio live at the following link:
 
-Puedes ver el portfolio funcionando en el siguiente enlace:
+🔗 View Portfolio Online
 
-🔗 [Ver portfolio online](https://naraanjo.github.io/Portfolio/)
-
-No necesitas descargar nada: simplemente abre el enlace en tu navegador y explora la interfaz, el diseño responsive y el formulario de contacto activo mediante Formspree.
+No download required — just open the link in your browser and explore the interface, responsive design, and the active contact form powered by Formspree.
