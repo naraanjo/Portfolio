@@ -1,0 +1,35 @@
+---
+// Importamos todos los bloques de construcción
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import AboutMe from "../components/AboutMe.astro";
+import SoftSkills from "../components/SoftSkills.astro";
+import Technologies from "../components/Technologies.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import BackToTop from "../components/BackToTop.astro";
+---
+
+<Layout 
+  title="Álvaro Naranjo | Full Stack Developer" 
+  description="Portafolio de Álvaro Naranjo, Desarrollador Full Stack especializado en Angular, Laravel y soluciones creativas."
+>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <Navbar />
+  
+  <Hero />
+
+  <main id="main-content">
+    <AboutMe />
+    <SoftSkills />
+    <Technologies />
+    <Projects />
+    <Contact />
+  </main>
+  
+  <BackToTop />
+
+</Layout>

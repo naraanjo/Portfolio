@@ -1,0 +1,66 @@
+<a href="#hero" id="backToTop" class="back-to-top" aria-label="Volver arriba">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+<script>
+  // --- Botón "Volver Arriba" ---
+  const backToTopButton = document.getElementById(
+    "backToTop"
+  ) as HTMLAnchorElement | null;
+
+  if (backToTopButton) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add("visible");
+      } else {
+        backToTopButton.classList.remove("visible");
+      }
+    });
+  }
+</script>
+
+<style lang="scss">
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease,
+      background 0.3s ease;
+    box-shadow: 0 5px 15px var(--accent-shadow);
+
+    &:hover {
+      background: var(--accent-secondary);
+      transform: translateY(-5px);
+    }
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .back-to-top {
+      width: 45px;
+      height: 45px;
+      font-size: 1.3rem;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+</style>

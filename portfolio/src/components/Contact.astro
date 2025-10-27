@@ -1,0 +1,463 @@
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-subtitle">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Conecta</h3>
+        <p>
+          Estoy siempre abierto a discutir nuevas oportunidades, proyectos
+          innovadores o cualquier idea que tengas. No dudes en contactarme.
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:naranjodev06@gmail.com">naranjodev06@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <h4>Ubicación</h4>
+              <p>Ciudad Real, España</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <div class="contact-links">
+            <a
+              href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/"
+              class="contact-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mi perfil de LinkedIn"
+            >
+              <i class="bi bi-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://github.com/naraanjo"
+              class="contact-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mi perfil de GitHub"
+            >
+              <i class="bi bi-github"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/xkgqpajo" method="POST">
+        <h3>Envíame un mensaje</h3>
+        <div class="form-group">
+          <label for="name">Nombre Completo</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Tu nombre"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Tu Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="email@ejemplo.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            placeholder="Cuéntame sobre tu proyecto..."></textarea>
+        </div>
+        <button type="submit" class="btn submit-btn">Enviar Mensaje</button>
+        <div id="formStatus"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  // --- Gestión de Formulario de Contacto (Mejorado) ---
+  const contactForm = document.getElementById(
+    "contactForm"
+  ) as HTMLFormElement | null;
+  const formStatus = document.getElementById("formStatus") as HTMLElement | null;
+  const submitButton = contactForm?.querySelector(
+    ".submit-btn"
+  ) as HTMLButtonElement | null;
+
+  if (contactForm && formStatus && submitButton) {
+    contactForm.addEventListener("submit", async (e: Event) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("name") as HTMLInputElement;
+      const emailInput = document.getElementById("email") as HTMLInputElement;
+      const messageInput = document.getElementById(
+        "message"
+      ) as HTMLTextAreaElement;
+
+      if (
+        nameInput.value.trim() === "" ||
+        emailInput.value.trim() === "" ||
+        messageInput.value.trim() === ""
+      ) {
+        formStatus.textContent = "Por favor, rellena todos los campos.";
+        formStatus.className = "error";
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        formStatus.textContent = "Por favor, introduce un email válido.";
+        formStatus.className = "error";
+        return;
+      }
+
+      const data = new FormData(contactForm);
+      const action = contactForm.action;
+
+      formStatus.textContent = "Enviando...";
+      formStatus.className = "sending";
+      submitButton.disabled = true;
+      submitButton.textContent = "Enviando...";
+
+      try {
+        const response = await fetch(action, {
+          method: "POST",
+          body: data,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          formStatus.textContent = "¡Mensaje enviado con éxito! Gracias.";
+          formStatus.className = "success";
+          contactForm.reset();
+        } else {
+          const errorData = await response.json();
+          const errorMessage =
+            (errorData as any).errors
+              ?.map((err: any) => err.message)
+              .join(", ") || "Hubo un problema al enviar el formulario.";
+          formStatus.textContent = errorMessage;
+          formStatus.className = "error";
+        }
+      } catch (error) {
+        console.error("Error en el envío del formulario:", error);
+        formStatus.textContent = "Error de red. Por favor, inténtalo de nuevo.";
+        formStatus.className = "error";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar Mensaje";
+      }
+    });
+  }
+</script>
+
+<style lang="scss">
+  .contact-section {
+    background: var(--bg-contact-section);
+    padding: 6rem 2rem;
+    border-radius: 25px;
+    margin: 3rem auto;
+    max-width: 1200px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px var(--shadow-light);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+    }
+  }
+
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+    text-align: left;
+  }
+
+  .contact-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+  }
+
+  .contact-info > p {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+
+  .contact-methods {
+    margin-bottom: 3rem;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background: var(--bg-card);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(77, 168, 218, 0.2);
+      transform: translateY(-3px);
+    }
+
+    i {
+      font-size: 1.6rem;
+      color: var(--accent-primary);
+      width: 40px;
+      text-align: center;
+      margin-top: 0.2rem;
+    }
+
+    h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    a,
+    p {
+      margin: 0;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    a:hover {
+      color: var(--accent-primary);
+    }
+  }
+
+  .social-links {
+    margin-top: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.9rem 1.6rem;
+    border-radius: 10px;
+    background: var(--bg-card);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+
+    &:hover {
+      color: var(--accent-primary);
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+      border-color: rgba(77, 168, 218, 0.3);
+      box-shadow: 0 10px 25px var(--shadow-light);
+    }
+  }
+
+  /* Formulario */
+  .contact-form {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 35px var(--shadow-light);
+    backdrop-filter: blur(10px);
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-primary);
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--border-input);
+      border-radius: 10px;
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: "Inter", sans-serif;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        background: var(--bg-input-focus);
+        box-shadow: 0 0 0 3px var(--accent-shadow);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text-placeholder);
+    }
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    background: var(--accent-gradient);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 0.5rem;
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        var(--accent-secondary),
+        var(--accent-primary)
+      );
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--accent-shadow);
+    }
+
+    &:disabled {
+      background: var(--text-secondary);
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  #formStatus {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    display: none; /* Oculto por defecto */
+
+    &.success {
+      background-color: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+      display: block;
+    }
+
+    &.error {
+      background-color: rgba(220, 53, 69, 0.2);
+      color: #dc3545;
+      display: block;
+    }
+
+    &.sending {
+      background-color: rgba(0, 123, 255, 0.1);
+      color: var(--accent-primary);
+      display: block;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .contact-info {
+      text-align: center;
+    }
+    .contact-method {
+      justify-content: center;
+      text-align: left;
+    }
+    .contact-links {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 2.5rem 2rem;
+    }
+    .contact-section {
+      padding: 4rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-form {
+      padding: 2rem 1.5rem;
+    }
+    .contact-method {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.8rem;
+      i {
+        margin-top: 0;
+      }
+    }
+  }
+</style>

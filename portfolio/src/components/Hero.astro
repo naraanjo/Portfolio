@@ -1,0 +1,189 @@
+---
+// Removed import of HeroScene3D.jsx
+---
+
+<header id="hero" class="hero">
+  <div class="hero-content">
+
+    <img
+      src="/resources/imgs/yo.jfif" 
+      alt="Álvaro Naranjo"
+      class="hero-img" 
+    />
+
+    <h1 class="hero-title">
+      <span id="typewriter"></span>
+    </h1>
+    <h2 class="hero-subtitle">Full Stack Developer</h2>
+
+    <div class="hero-social">
+      <a
+        href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Mi perfil de LinkedIn"
+      >
+        <i class="bi bi-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a
+        href="https://github.com/naraanjo"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Mi perfil de GitHub"
+      >
+        <i class="bi bi-github"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="mailto:naranjodev06@gmail.com" aria-label="Enviar un correo">
+        <i class="bi bi-envelope"></i>
+        <span>Email</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // --- Typewriter Effect ---
+  const typewriterElement = document.getElementById(
+    "typewriter"
+  ) as HTMLElement | null;
+  const textToType = "Hola, soy Álvaro Naranjo";
+  let charIndex = 0;
+
+  function typeWriterOnce() {
+    if (charIndex < textToType.length) {
+      if (typewriterElement) {
+        typewriterElement.textContent += textToType.charAt(charIndex);
+      }
+      charIndex++;
+      setTimeout(typeWriterOnce, 100);
+    } else {
+      if (typewriterElement) {
+        typewriterElement.style.borderRight = "none";
+      }
+    }
+  }
+
+  if (typewriterElement) {
+    typewriterElement.textContent = "";
+    setTimeout(typeWriterOnce, 500);
+  }
+</script>
+
+<style lang="scss">
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding-top: 80px;
+    box-sizing: border-box;
+  }
+
+  /* Reverted back to hero-img styles */
+  .hero-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    margin-bottom: 1.5rem;
+    border: 4px solid var(--accent-primary);
+    box-shadow: 0 10px 30px var(--accent-shadow);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px var(--shadow-light);
+    font-family: "Inter", sans-serif;
+    color: var(--text-primary);
+    min-height: 3.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-family: "JetBrains Mono", monospace;
+    min-height: 2.5rem;
+  }
+
+  #typewriter {
+    color: var(--text-primary);
+    border-right: 4px solid var(--accent-primary);
+    padding-right: 4px;
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0% { border-color: transparent; }
+    50% { border-color: var(--accent-primary); }
+    100% { border-color: transparent; }
+  }
+
+  .hero-social {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+
+    a {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
+      }
+      &:hover::before { left: 100%; }
+      &:hover {
+        color: var(--accent-primary);
+        transform: translateY(-2px);
+        background: var(--bg-card-hover);
+      }
+      span {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; min-height: 3rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 2.2rem; min-height: 2.7rem; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .hero-img { width: 140px; height: 140px; } /* Adjusted hero-img size */
+  }
+</style>

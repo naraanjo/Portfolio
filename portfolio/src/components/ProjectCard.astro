@@ -1,0 +1,45 @@
+---
+import Card from "./Card.astro";
+
+interface Props {
+  title: string;
+  imgSrc: string;
+  imgAlt: string;
+  githubUrl: string;
+}
+
+const { title, imgSrc, imgAlt, githubUrl } = Astro.props;
+---
+
+<Card title={title}>
+  <img src={imgSrc} alt={imgAlt} loading="lazy" />
+  
+  <slot /> 
+  
+  <a href={githubUrl} class="btn" target="_blank" rel="noopener noreferrer">
+    Ver Proyecto
+  </a>
+</Card>
+
+<style lang="scss">
+  /* Podemos usar :global() para dar estilo a la img 
+    o simplemente poner los estilos en Card.astro
+  */
+  :global(.card img) {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+  }
+
+  :global(.card img:hover) {
+    transform: scale(1.05);
+  }
+
+  :global(.card p) {
+    margin-bottom: 0.5rem;
+  }
+</style>

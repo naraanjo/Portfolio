@@ -1,0 +1,87 @@
+---
+import Card from "./Card.astro"; // ¡Importamos la card!
+---
+
+<section id="softskills" class="section">
+  <div class="container">
+    <h2 class="section-title">Habilidades Blandas</h2>
+    <div class="cards-container">
+      
+      <Card icon="bi-people-fill" title="Trabajo en Equipo y Colaboración">
+        <p>Capacidad para integrarme en equipos multidisciplinarios</p>
+        <div class="skill-details">
+          <ul>
+            <li>Participación activa en reuniones ágiles y retrospectivas</li>
+            <li>Comunicación efectiva con otros desarrolladores</li>
+          </ul>
+        </div>
+      </Card>
+
+      <Card icon="bi-clock-fill" title="Gestión del Tiempo y Priorización">
+        <p>Habilidad para organizar tareas por urgencia e importancia</p>
+        <div class="skill-details">
+          <ul>
+            <li>Estimación realista de tiempos de desarrollo</li>
+            <li>Uso de herramientas como Trello o Jira</li>
+            <li>Rigoroso con las fechas de entrega</li>
+          </ul>
+        </div>
+      </Card>
+
+      <Card icon="bi-arrow-repeat" title="Adaptabilidad y Aprendizaje Continuo">
+        <p>Mentalidad de crecimiento y adaptación tecnológica</p>
+        <div class="skill-details">
+          <ul>
+            <li><strong>EXTREMADAMENTE</strong> adaptable como sello personal</li>
+            <li>Capacidad para pivotar en diferentes áreas</li>
+            <li>Aprendizaje autodidacta</li>
+          </ul>
+        </div>
+      </Card>
+
+      <Card icon="bi-chat-dots-fill" title="Comunicación Técnica y Claridad">
+        <p>Comunicación clara y acción proactiva definen mi forma de trabajar</p>
+        <div class="skill-details">
+          <ul>
+            <li>Explicación clara de soluciones a clientes y equipos</li>
+            <li>Comunicación fluida en entornos colaborativos</li>
+          </ul>
+        </div>
+      </Card>
+      
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  /* Estilos solo para los detalles de esta sección */
+  .skill-details {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      color: var(--text-secondary);
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 1.5rem;
+      text-align: left;
+      line-height: 1.5;
+
+      &::before {
+        content: "•";
+        color: var(--accent-primary);
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+      }
+    }
+  }
+</style>

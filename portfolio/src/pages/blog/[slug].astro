@@ -1,0 +1,91 @@
+---
+// src/pages/blog/[slug].astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Esta función le dice a Astro qué páginas debe construir
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+// Astro.props contiene el post individual que coincide con el slug
+const post = Astro.props;
+const { Content } = await post.render();
+---
+<Layout title={post.data.title} description={post.data.description}>
+  <main class="post-container section">
+    <div class="post-header">
+      <h1 class="section-title">{post.data.title}</h1>
+      <p>
+        Publicado el: {new Date(post.data.pubDate).toLocaleDateString('es-ES', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </p>
+      {post.data.heroImage && (
+        <img src={post.data.heroImage} alt="" class="hero-image" />
+      )}
+    </div>
+    
+    <article class="post-content">
+      <Content />
+    </article>
+    
+  </main>
+</Layout>
+
+<style is:global>
+  /* is:global permite dar estilo al HTML que viene del Markdown */
+  .post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 100px;
+  }
+  .post-header {
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 2rem;
+  }
+  .hero-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+  }
+
+  .post-content h2 {
+    color: var(--accent-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+  .post-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  .post-content a {
+    color: var(--accent-primary);
+  }
+  .post-content code {
+    background: var(--bg-card);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .post-content ul {
+    padding-left: 2rem;
+  }
+  .post-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

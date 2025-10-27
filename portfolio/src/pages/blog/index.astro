@@ -1,0 +1,77 @@
+---
+// src/pages/blog/index.astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Obtenemos todos los posts y los ordenamos por fecha
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<Layout title="Mi Blog" description="Artículos sobre desarrollo y tecnología.">
+  <main class="blog-container section">
+    <h1 class="section-title">Mi Blog</h1>
+    <p class="section-subtitle">Ideas y aprendizajes sobre desarrollo.</p>
+    <ul>
+      {posts.map(post => (
+        <li class="post-item">
+          <a href={`/blog/${post.slug}/`}>
+            <h2 class="post-title">{post.data.title}</h2>
+            <p class="post-date">
+              {new Date(post.data.pubDate).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <p class="post-description">{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  .blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 100px; /* Espacio para el Navbar fijo */
+    min-height: 100vh;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  .post-item {
+    margin-bottom: 2rem;
+  }
+  .post-item a {
+    display: block;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .post-item a:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+  }
+  .post-title {
+    color: var(--accent-primary);
+    margin: 0 0 0.5rem;
+  }
+  .post-date {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .post-description {
+    color: var(--text-primary);
+    margin: 0;
+  }
+</style>

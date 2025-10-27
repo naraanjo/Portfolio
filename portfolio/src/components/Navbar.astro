@@ -1,0 +1,252 @@
+<nav class="navbar" role="navigation">
+  <div class="navbar-left">Álvaro Naranjo</div>
+  <div class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="navbar-right" id="navbarRight">
+    <a href="/#about-me">Sobre Mí</a>
+    <a href="/#softskills">Habilidades</a>
+    <a href="/#technologies">Tecnologías</a>
+    <a href="/#projects">Proyectos</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#contact" class="nav-contact">Contacto</a>
+    <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+      <i class="bi bi-moon-fill"></i>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // --- Interruptor de Tema (Light/Dark Mode) CON TRANSICIÓN ---
+  const themeToggle = document.getElementById(
+    "themeToggle"
+  ) as HTMLButtonElement | null;
+  const themeIcon = themeToggle?.querySelector("i") as HTMLElement | null;
+  const body = document.body;
+
+  // 1. Aplicar tema guardado al cargar (SIN TRANSICIÓN INICIAL)
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "light" && themeIcon) {
+    body.classList.add("light-mode", "no-transition"); // Añadir no-transition inicialmente
+    themeIcon.classList.remove("bi-moon-fill");
+    themeIcon.classList.add("bi-sun-fill");
+    requestAnimationFrame(() => {
+        body.classList.remove("no-transition");
+    });
+  } else if (themeIcon) {
+     body.classList.remove("no-transition");
+  }
+
+
+  // 2. Listener para el botón (CON TRANSICIÓN)
+  if (themeToggle && themeIcon) {
+    themeToggle.addEventListener("click", () => {
+      body.classList.add("theme-transition");
+      body.classList.toggle("light-mode");
+
+      let theme = "dark";
+      if (body.classList.contains("light-mode")) {
+        theme = "light";
+        themeIcon.classList.remove("bi-moon-fill");
+        themeIcon.classList.add("bi-sun-fill");
+      } else {
+        themeIcon.classList.remove("bi-sun-fill");
+        themeIcon.classList.add("bi-moon-fill");
+      }
+      localStorage.setItem("theme", theme);
+
+      setTimeout(() => {
+        body.classList.remove("theme-transition");
+      }, 500); 
+    });
+  }
+
+  // --- Menú hamburguesa móvil ---
+  const menuToggle = document.getElementById("menuToggle") as HTMLElement | null;
+  const navbarRight = document.getElementById(
+    "navbarRight"
+  ) as HTMLElement | null;
+
+  if (menuToggle && navbarRight) {
+    menuToggle.addEventListener("click", () => {
+      navbarRight.classList.toggle("show");
+      menuToggle.classList.toggle("open");
+    });
+  }
+  document.querySelectorAll<HTMLAnchorElement>("#navbarRight a")
+    .forEach((anchor) => {
+      anchor.addEventListener("click", () => {
+        if (navbarRight?.classList.contains("show")) {
+          navbarRight.classList.remove("show");
+          menuToggle?.classList.remove("open");
+        }
+      });
+    });
+</script>
+
+{/* 👇👇👇 ¡ESTA ES LA PARTE QUE FALTABA! 👇👇👇 */}
+<style lang="scss">
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--bg-nav);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.3s ease;
+  }
+
+  .navbar-left {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-left: 1rem;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .navbar-right {
+    display: flex;
+    gap: 2.5rem;
+    margin-right: 2rem;
+    align-items: center;
+
+    a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 0.5rem 0.8rem;
+      border-radius: 5px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent-primary);
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+        transform-origin: right;
+      }
+
+      &:hover::before {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+
+      &:hover,
+      &.active {
+        color: var(--accent-primary);
+      }
+    }
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: var(--accent-primary);
+      transform: scale(1.1) rotate(15deg);
+    }
+  }
+
+  /* Menú hamburguesa */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+
+    span {
+      display: block;
+      height: 3px;
+      width: 25px;
+      background-color: var(--accent-primary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &.open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 968px) {
+    .menu-toggle {
+      display: flex;
+      margin-right: 1rem;
+    }
+
+    .navbar-right {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: var(--bg-nav);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 1rem 0;
+      z-index: 1000;
+      border-top: 1px solid var(--border-color);
+      box-shadow: 0 10px 20px var(--shadow-light);
+
+      &.show {
+        display: flex;
+      }
+
+      a {
+        padding: 1rem;
+        text-align: center;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+
+      .theme-toggle {
+        margin: 0.5rem auto;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 1rem 1.5rem;
+    }
+    .navbar-left {
+      margin-left: 0;
+    }
+  }
+</style>

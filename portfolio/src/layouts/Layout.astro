@@ -1,0 +1,128 @@
+---
+// Server-side imports
+import { ViewTransitions } from 'astro:transitions';
+import "../styles/global.scss";
+
+// Props definition
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Álvaro Naranjo" />
+
+  {/* Fonts and Icons */}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  {/* Astro View Transitions */}
+  <ViewTransitions />
+
+  {/* 👇 INLINE STYLES FOR SLOWER CURTAIN PRELOADER 👇 */}
+  <style is:inline>
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .curtain {
+      width: 50%;
+      height: 100%;
+      background-color: #1b1f2a;
+      /* SLOWER transition */
+      transition: transform 1.5s cubic-bezier(0.86, 0, 0.07, 1); /* Changed from 0.8s to 1.5s */
+      transition-delay: 0.2s;
+    }
+    .curtain-left {
+      transform: translateX(0);
+    }
+    .curtain-right {
+      transform: translateX(0);
+    }
+    .preloader.hidden .curtain-left {
+      transform: translateX(-100%);
+    }
+    .preloader.hidden .curtain-right {
+      transform: translateX(100%);
+    }
+    .preloader-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #4da8da;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      opacity: 1;
+      /* Adjust content fade slightly to match slower curtain */
+      transition: opacity 0.5s ease-out 0.1s; /* Slightly longer fade, earlier start */
+      z-index: 10000;
+    }
+    .preloader.hidden .preloader-content {
+      opacity: 0;
+    }
+    body.loading {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="loading">
+  {/* 👇 CURTAIN PRELOADER HTML 👇 */}
+  <div class="preloader" id="preloader">
+     <div class="preloader-content">AN</div>
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+  </div>
+
+  <slot />
+
+  {/* Client-side scripts */}
+  <script>
+    // Import other scripts
+    import "../scripts/gsap-animations.js";
+    import "../scripts/global-listeners.js";
+    // import "../scripts/gsap-microinteractions.js";
+
+    // 👇 PRELOADER HIDING SCRIPT 👇
+    window.addEventListener('load', () => {
+        const body = document.body;
+        const preloader = document.getElementById('preloader');
+
+        body.classList.remove('loading');
+
+        if (preloader) {
+            preloader.classList.add('hidden');
+            // Adjust timeout to match new slower CSS duration + delay
+            // 1.5s transition + 0.2s delay = 1.7s. Add buffer.
+            setTimeout(() => {
+                if (preloader && preloader.parentNode) {
+                  preloader.parentNode.removeChild(preloader);
+                }
+            }, 2000); // Changed from 1200ms to 2000ms (2 seconds)
+        }
+    });
+  </script>
+</body>
+</html>

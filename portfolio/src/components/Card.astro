@@ -1,0 +1,92 @@
+---
+// Esta card acepta "props" para ser reutilizable
+interface Props {
+  icon?: string; // El icono (ej. 'bi-people-fill')
+  title: string;
+}
+
+const { icon, title } = Astro.props;
+---
+
+<div class="card">
+  {
+    icon && (
+      <i class:list={["card-icon", "bi", icon]} />
+    )
+  }
+  <h5>{title}</h5>
+  
+  <slot />
+</div>
+
+<style lang="scss">
+  .card {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 2.5rem;
+    width: 350px;
+    transition: all 0.5s;
+    /* opacity: 0; <-- ELIMINADO */
+    /* transform: translateY(50px); <-- ELIMINADO */
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-light);
+    text-align: left;
+  }
+
+  /* ELIMINADO EL BLOQUE ENTERO DE .card.visible */
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px var(--shadow-color);
+    background: var(--bg-card-hover);
+  }
+
+  .card h5 {
+    color: var(--accent-primary);
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  /* :global() se usa para dar estilo a los hijos pasados por <slot> */
+  .card :global(p) {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .card-icon {
+    font-size: 2.8rem;
+    color: var(--accent-primary);
+    margin-bottom: 1.8rem;
+    display: block;
+    text-align: center;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+      max-width: 350px;
+      padding: 2rem 1.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 1.8rem 1.5rem;
+    }
+  }
+</style>

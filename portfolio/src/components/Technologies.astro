@@ -1,0 +1,174 @@
+<section id="technologies" class="section tech-section">
+  <div class="container">
+    <h2 class="section-title">Tecnologías</h2>
+    <div class="tech-container">
+      <div class="tech-icons">
+        <div class="tech-item">
+          <img
+            src="/resources/icons/icons8-angular-color-96.png"
+            alt="Angular"
+            loading="lazy"
+          />
+          <span class="tech-name">Angular</span>
+        </div>
+        <div class="tech-item">
+          <img
+            src="/resources/icons/boootstrap.png"
+            alt="Bootstrap"
+            loading="lazy"
+          />
+          <span class="tech-name">Bootstrap</span>
+        </div>
+        <div class="tech-item">
+          <img src="/resources/icons/laravel.png" alt="Laravel" loading="lazy" />
+          <span class="tech-name">Laravel</span>
+        </div>
+        <div class="tech-item">
+          <img src="/resources/icons/icons8-java.svg" alt="Java" loading="lazy" />
+          <span class="tech-name">Java</span>
+        </div>
+        <div class="tech-item">
+          <img src="/resources/icons/c.png" alt="C#" loading="lazy" />
+          <span class="tech-name">C#</span>
+        </div>
+      </div>
+      <div class="tech-icons">
+        <div class="tech-item">
+          <img src="/resources/icons/jira.png" alt="Jira" loading="lazy" />
+          <span class="tech-name">Jira</span>
+        </div>
+        <div class="tech-item">
+          <img
+            src="/resources/icons/icons8-kotlin.svg"
+            alt="Kotlin"
+            loading="lazy"
+          />
+          <span class="tech-name">Kotlin</span>
+        </div>
+        <div class="tech-item">
+          <img src="/resources/icons/mySql.png" alt="MySQL" loading="lazy" />
+          <span class="tech-name">MySQL</span>
+        </div>
+        <div class="tech-item">
+          <img
+            src="/resources/icons/icons8-github-48.png"
+            alt="GitHub"
+            loading="lazy"
+          />
+          <span class="tech-name">GitHub</span>
+        </div>
+        <div class="tech-item">
+          <img src="/resources/icons/git.png" alt="Git" loading="lazy" />
+          <span class="tech-name">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .tech-section {
+    background: var(--bg-tech-section);
+    /* Ensure background size is set for parallax */
+    background-size: cover; /* Or 100% auto, 100% 150%, etc. */
+    padding: 5rem 2rem;
+    border-radius: 20px;
+    margin: 3rem auto;
+    max-width: 1100px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-primary),
+        transparent
+      );
+    }
+  }
+
+  .tech-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    transition: all 0.3s ease;
+    /* Styles for animation start state removed, handled by GSAP */
+  }
+
+  .tech-icons img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    border-radius: 15px;
+    padding: 1.2rem;
+    box-shadow: 0 10px 25px var(--shadow-dark);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+
+    &:hover {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 15px 30px var(--accent-shadow);
+      background: var(--accent-gradient);
+      filter: brightness(1.1);
+    }
+  }
+
+  .tech-name {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+
+  .tech-item:hover .tech-name {
+    opacity: 1;
+    color: var(--accent-primary);
+  }
+
+  @media (max-width: 768px) {
+    .tech-icons {
+      gap: 2.5rem;
+    }
+    .tech-icons img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tech-icons {
+      gap: 2rem;
+    }
+    .tech-icons img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>

@@ -1,0 +1,257 @@
+/* src/styles/global.scss */
+
+/* --- Variables de Color (Tema Oscuro por defecto) --- */
+:root {
+  --bg-primary: #1b1f2a;
+  --bg-secondary: #2a2f3d;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --bg-tech-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.15),
+    rgba(41, 128, 185, 0.15)
+  );
+  --bg-contact-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.08),
+    rgba(41, 128, 185, 0.08)
+  );
+  --bg-input: rgba(255, 255, 255, 0.06);
+  --bg-input-focus: rgba(255, 255, 255, 0.09);
+  --bg-nav: rgba(27, 31, 42, 0.95);
+
+  --text-primary: #f1f1f1;
+  --text-secondary: #ccc;
+  --text-placeholder: #888;
+  --text-btn-hover: #fff;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-input: rgba(255, 255, 255, 0.2);
+
+  --accent-primary: #4da8da;
+  --accent-secondary: #5dc1e5;
+  --accent-gradient: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  --accent-shadow: rgba(77, 168, 218, 0.4);
+
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Tema Claro --- */
+body.light-mode {
+  --bg-primary: #f4f7f6;
+  --bg-secondary: #e8ecef;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: #fff;
+  --bg-tech-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.1),
+    rgba(41, 128, 185, 0.1)
+  );
+  --bg-contact-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.05),
+    rgba(41, 128, 185, 0.05)
+  );
+  --bg-input: rgba(0, 0, 0, 0.04);
+  --bg-input-focus: rgba(0, 0, 0, 0.02);
+  --bg-nav: rgba(244, 247, 246, 0.9);
+
+  --text-primary: #1b1f2a;
+  --text-secondary: #555;
+  --text-placeholder: #777;
+  --text-btn-hover: #fff;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-input: rgba(0, 0, 0, 0.2);
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+}
+
+/* --- Estilos Base --- */
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  line-height: 1.6;
+  /* transition: background 0.3s ease, color 0.3s ease; <-- REMOVED, handled below */
+}
+
+/* --- Accesibilidad --- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--accent-primary);
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  z-index: 9999;
+  transition: top 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 5px 15px var(--shadow-dark);
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* --- Secciones --- */
+.section {
+  padding: 6rem 2rem;
+  text-align: center;
+  scroll-margin-top: 80px; /* Ajuste para navbar fijo */
+}
+
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-primary);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+/* --- Contenedores y Botones Globales --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  border: 2px solid var(--accent-primary);
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  background: var(--accent-primary);
+  color: var(--text-btn-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--accent-shadow);
+}
+
+/* --- Transición Suave de Tema (NUEVO) --- */
+body {
+  /* Añade transición a los colores de fondo y texto */
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Clase temporal para desactivar la transición al cargar la página 
+  y evitar el "flash" inicial. 
+*/
+body.no-transition {
+  transition: none !important;
+}
+
+/* Clase que se añade durante el cambio de tema para transiciones 
+  más específicas si fueran necesarias (por ejemplo, en componentes).
+  Aquí la usamos principalmente como un "activador" en el JS.
+*/
+body.theme-transition * {
+  /* Podrías añadir transiciones a elementos específicos aquí si quisieras */
+  /* transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; */
+}
+
+/* Asegúrate de que las variables cambien instantáneamente en modo claro, 
+   la transición la hará el 'body' */
+body.light-mode {
+  /* Re-declaramos las variables aquí para asegurarnos de que se aplican */
+  --bg-primary: #f4f7f6;
+  --bg-secondary: #e8ecef;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: #fff;
+  --bg-tech-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.1),
+    rgba(41, 128, 185, 0.1)
+  );
+  --bg-contact-section: linear-gradient(
+    135deg,
+    rgba(77, 168, 218, 0.05),
+    rgba(41, 128, 185, 0.05)
+  );
+  --bg-input: rgba(0, 0, 0, 0.04);
+  --bg-input-focus: rgba(0, 0, 0, 0.02);
+  --bg-nav: rgba(244, 247, 246, 0.9);
+
+  --text-primary: #1b1f2a;
+  --text-secondary: #555;
+  --text-placeholder: #777;
+  --text-btn-hover: #fff;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-input: rgba(0, 0, 0, 0.2);
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+}
