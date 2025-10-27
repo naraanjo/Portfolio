@@ -1,135 +1,213 @@
-// Animación de cards al hacer scroll :cite[3]
-const cards = document.querySelectorAll('.card');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('visible');
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Animación de cards al hacer scroll (Mejorada) ---
+  const animatedElements = document.querySelectorAll('.card, .tech-item');
+  // Convertir NodeList a Array para obtener un índice estable
+  const allTechItems = Array.from(document.querySelectorAll('.tech-item'));
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        
+        if (target.classList.contains('tech-item')) {
+          // Obtener índice estable para el delay escalonado
+          const techIndex = allTechItems.indexOf(target);
+          setTimeout(() => {
+            target.classList.add('visible');
+          }, techIndex * 100); // Delay basado en la posición en el DOM
+        } else {
+          // Es una 'card', mostrarla inmediatamente
+          target.classList.add('visible');
         }
+        observer.unobserve(target); // Dejar de observar una vez visible
+      }
     });
-},{threshold:0.2});
+  }, { threshold: 0.1 }); // Umbral bajo para activación temprana
 
-cards.forEach(card => observer.observe(card));
+  animatedElements.forEach(el => observer.observe(el));
 
-// Efecto de scroll suave para navegación
-document.querySelectorAll('.navbar-right a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+
+  // --- Menú hamburguesa móvil ---
+  const menuToggle = document.getElementById('menuToggle');
+  const navbarRight = document.getElementById('navbarRight');
+
+  menuToggle.addEventListener('click', () => {
+    navbarRight.classList.toggle('show');
+    menuToggle.classList.toggle('open');
+  });
+
+  // --- Scroll suave y cierre de menú ---
+  document.querySelectorAll('.navbar-right a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      if (this.getAttribute('href').startsWith('#')) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        
-        window.scrollTo({
-            top: targetSection.offsetTop - 80,
+
+        if (targetSection) {
+          window.scrollTo({
+            top: targetSection.offsetTop - 80, // Offset del navbar
             behavior: 'smooth'
-        });
-
-        // Cerrar menú hamburguesa si está abierto
-        const navbarRight = document.getElementById('navbarRight');
-        const menuToggle = document.getElementById('menuToggle');
-        if(navbarRight.classList.contains('show')) {
-            navbarRight.classList.remove('show');
-            menuToggle.classList.remove('open');
+          });
         }
+      }
+      if (navbarRight.classList.contains('show')) {
+        navbarRight.classList.remove('show');
+        menuToggle.classList.remove('open');
+      }
     });
-});
+  });
 
-// Sistema de partículas azules para el fondo del hero
-function createParticles() {
-    const heroSection = document.querySelector('.hero');
-    const particlesCount = 20;
-    
-    for(let i = 0; i < particlesCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const size = Math.random() * 5 + 3;
-        const duration = Math.random() * 20 + 10;
-        
-        particle.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: rgba(0, 123, 255, 0.6); /* Azul */
-            border-radius: 50%;
-            top: ${posY}%;
-            left: ${posX}%;
-            pointer-events: none;
-            animation: floatParticle ${duration}s linear infinite;
-            animation-delay: ${Math.random() * 5}s;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Azul */
-        `;
-        
-        heroSection.appendChild(particle);
-    }
-    
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes floatParticle {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(360deg); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
-}
-window.addEventListener('load', createParticles);
+  // --- Resaltar enlace de nav activo en scroll ---
+  const sections = document.querySelectorAll('section[id]'); // Seleccionar solo secciones con ID
+  const navLinks = document.querySelectorAll('.navbar-right a[href^="#"]');
 
-// Efecto de escritura para el título
-const heroTitle = document.querySelector('.hero-title');
-const originalText = heroTitle.textContent;
-
-function typeWriter() {
-    heroTitle.textContent = '';
-    let charIndex = 0;
-    
-    function type() {
-        if(charIndex < originalText.length) {
-            heroTitle.textContent += originalText.charAt(charIndex);
-            charIndex++;
-            setTimeout(type, 100);
-        }
-    }
-    type();
-}
-setTimeout(typeWriter, 500);
-
-// Efecto parallax para el hero
-const hero = document.querySelector('.hero');
-window.addEventListener('scroll', ()=> {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * 0.5;
-    hero.style.transform = `translateY(${rate}px)`;
-});
-
-// Añadir clase active al navbar según scroll
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.navbar-right a');
-
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if(pageYOffset >= (sectionTop - 100)) {
-            current = section.getAttribute('id');
-        }
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= (sectionTop - 90)) { // 90px de offset
+        current = section.getAttribute('id');
+      }
     });
-    
+
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
     });
+  });
+
+  // --- Efecto Máquina de Escribir (Typewriter) MODIFICADO ---
+  const typewriterElement = document.getElementById('typewriter');
+  const textToType = "Hola, soy Álvaro Naranjo";
+  let charIndex = 0;
+
+  function typeWriterOnce() {
+    if (charIndex < textToType.length) {
+      // Escribiendo
+      typewriterElement.textContent += textToType.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeWriterOnce, 100); // Velocidad de escritura
+    } else {
+      // Animación terminada: quitar el cursor parpadeante
+      if (typewriterElement) {
+        typewriterElement.style.borderRight = 'none';
+      }
+    }
+  }
+
+  if (typewriterElement) {
+    typewriterElement.textContent = ''; // Limpiar contenido inicial
+    setTimeout(typeWriterOnce, 500); // Iniciar después de medio segundo
+  }
+
+
+  // --- Interruptor de Tema (Light/Dark Mode) ---
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('i');
+  const currentTheme = localStorage.getItem('theme');
+
+  if (currentTheme === 'light') {
+    document.body.classList.add('light-mode');
+    themeIcon.classList.remove('bi-moon-fill');
+    themeIcon.classList.add('bi-sun-fill');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    let theme = 'dark';
+    if (document.body.classList.contains('light-mode')) {
+      theme = 'light';
+      themeIcon.classList.remove('bi-moon-fill');
+      themeIcon.classList.add('bi-sun-fill');
+    } else {
+      themeIcon.classList.remove('bi-sun-fill');
+      themeIcon.classList.add('bi-moon-fill');
+    }
+    localStorage.setItem('theme', theme);
+  });
+
+  // --- Cursor Personalizado (ELIMINADO) ---
+  // Se ha eliminado el listener 'mousemove' y los listeners 'mouseover'/'mouseout'
+
+
+  // --- Botón "Volver Arriba" ---
+  const backToTopButton = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  });
+
+  // --- Gestión de Formulario de Contacto (Mejorado) ---
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitButton = contactForm.querySelector('.submit-btn');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    
+    // Validación de campos requeridos
+    if (nameInput.value.trim() === '' || emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+      formStatus.textContent = 'Por favor, rellena todos los campos.';
+      formStatus.className = 'error';
+      return;
+    }
+
+    // Validación de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      formStatus.textContent = 'Por favor, introduce un email válido.';
+      formStatus.className = 'error';
+      return;
+    }
+
+    const data = new FormData(contactForm);
+    const action = contactForm.action;
+    
+    // Estado "Enviando"
+    formStatus.textContent = 'Enviando...';
+    formStatus.className = 'sending';
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+
+    try {
+      const response = await fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = '¡Mensaje enviado con éxito! Gracias.';
+        formStatus.className = 'success';
+        contactForm.reset();
+      } else {
+        const errorData = await response.json();
+        const errorMessage = errorData.errors?.map(err => err.message).join(', ') || 'Hubo un problema al enviar el formulario.';
+        formStatus.textContent = errorMessage;
+        formStatus.className = 'error';
+      }
+    } catch (error) {
+      console.error('Error en el envío del formulario:', error);
+      formStatus.textContent = 'Error de red. Por favor, inténtalo de nuevo.';
+      formStatus.className = 'error';
+    } finally {
+      // Restaurar botón
+      submitButton.disabled = false;
+      submitButton.textContent = 'Enviar Mensaje';
+    }
+  });
 });
-
-// Menú hamburguesa móvil
-const menuToggle = document.getElementById('menuToggle');
-const navbarRight = document.getElementById('navbarRight');
-
-menuToggle.addEventListener('click', () => {
-    navbarRight.classList.toggle('show');
-    menuToggle.classList.toggle('open');
-});
-
