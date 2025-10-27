@@ -6,6 +6,12 @@ on:
     branches: [main] # O 'master', según tu rama
   workflow_dispatch:
 
+# 👇 BLOQUE DE PERMISOS AÑADIDO 👇
+permissions:
+  contents: read     # Necesario para hacer checkout del código
+  pages: write      # Necesario para escribir en GitHub Pages
+  id-token: write   # Necesario para la autenticación
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
