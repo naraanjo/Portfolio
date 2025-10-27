@@ -32,10 +32,12 @@
     body.classList.add("light-mode", "no-transition"); // Añadir no-transition inicialmente
     themeIcon.classList.remove("bi-moon-fill");
     themeIcon.classList.add("bi-sun-fill");
+    // Eliminar la clase no-transition después de un instante para futuras transiciones
     requestAnimationFrame(() => {
         body.classList.remove("no-transition");
     });
   } else if (themeIcon) {
+     // Asegurar que las transiciones estén activas si es tema oscuro
      body.classList.remove("no-transition");
   }
 
@@ -43,7 +45,10 @@
   // 2. Listener para el botón (CON TRANSICIÓN)
   if (themeToggle && themeIcon) {
     themeToggle.addEventListener("click", () => {
+      // Activar la transición
       body.classList.add("theme-transition");
+
+      // Cambiar el tema
       body.classList.toggle("light-mode");
 
       let theme = "dark";
@@ -57,9 +62,11 @@
       }
       localStorage.setItem("theme", theme);
 
+      // Quitar la clase de transición después de que termine la animación CSS
+      // (Ajusta la duración si cambias la transición en CSS)
       setTimeout(() => {
         body.classList.remove("theme-transition");
-      }, 500); 
+      }, 500); // 500ms = duración de la transición CSS (ver global.scss)
     });
   }
 
@@ -78,6 +85,7 @@
   document.querySelectorAll<HTMLAnchorElement>("#navbarRight a")
     .forEach((anchor) => {
       anchor.addEventListener("click", () => {
+        // Solo cerramos si el menú está abierto (móvil)
         if (navbarRight?.classList.contains("show")) {
           navbarRight.classList.remove("show");
           menuToggle?.classList.remove("open");
@@ -86,8 +94,8 @@
     });
 </script>
 
-{/* 👇👇👇 ¡ESTA ES LA PARTE QUE FALTABA! 👇👇👇 */}
 <style lang="scss">
+  /* --- Estilos del Navbar --- */
   .navbar {
     position: fixed;
     top: 0;

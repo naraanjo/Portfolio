@@ -1,5 +1,6 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
+// No need to import InteractiveButton unless you add it back
 ---
 
 <section id="projects" class="section">
@@ -7,41 +8,10 @@ import ProjectCard from "./ProjectCard.astro";
     <h2 class="section-title">Proyectos</h2>
     <div class="cards-container">
       
+     
       <ProjectCard
-        title="Plataforma E-commerce 'TechZone'"
-        imgSrc="/resources/imgs/project-ecommerce.png"
-        imgAlt="Proyecto E-commerce"
-        githubUrl="https://github.com/naraanjo"
-      >
-        <p>
-          Desarrollo de una tienda online completa con carrito, pasarela de pago
-          (simulada) y panel de administración.
-        </p>
-        <p>
-          <strong>Tecnologías:</strong> Angular, Laravel (API REST), MySQL,
-          Bootstrap.
-        </p>
-      </ProjectCard>
-
-      <ProjectCard
-        title="App de Gestión de Tareas 'TaskFlow'"
-        imgSrc="/resources/imgs/project-tasks.png"
-        imgAlt="Proyecto Gestor de Tareas"
-        githubUrl="https://github.com/naraanjo"
-      >
-        <p>
-          Aplicación colaborativa tipo Trello/Jira para la gestión de proyectos
-          y tareas en equipo.
-        </p>
-        <p>
-          <strong>Tecnologías:</strong> Angular, Java (Spring Boot), Kotlin,
-          MySQL.
-        </p>
-      </ProjectCard>
-
-      <ProjectCard
-        title="Portafolio Personal v2"
-        imgSrc="/resources/imgs/portoflioImg.png"
+        title="Portafolio Personal"
+        imgSrc="/Portfolio/resources/imgs/portoflioImg.png" {/* MODIFICADO */}
         imgAlt="Proyecto Portafolio"
         githubUrl="https://github.com/naraanjo/Portfolio"
       >
@@ -50,11 +20,13 @@ import ProjectCard from "./ProjectCard.astro";
           diseño responsive.
         </p>
         <p>
-          <strong>Tecnologías:</strong> HTML5, CSS3 (Variables, Grid),
-          JavaScript (ES6+).
-        </s-p>
+          <strong>Tecnologías:</strong> Astro
+        </p>
+        {/* Corrected closing tag from </s-p> to </p> */}
       </ProjectCard>
 
     </div>
   </div>
 </section>
+
+{/* No <style> block needed here as styles are in ProjectCard.astro */}
