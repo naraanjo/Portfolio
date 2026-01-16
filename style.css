@@ -597,15 +597,16 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
 .project-card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 220px; /* Altura fija para mantener el orden */
+  object-fit: contain; /* La imagen entra entera sin cortarse */
+  background-color: #2d2d2d; /* <--- PONE EL COLOR DE TU TARJETA AQUÍ */
   border-radius: 12px;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
   border: 1px solid var(--border-color);
+  /* Opcional: un padding pequeño para que la imagen "respire" */
+  padding: 10px; 
+  box-sizing: border-box;
 }
 
 .project-card img:hover {
