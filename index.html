@@ -1,421 +1,375 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Álvaro Naranjo | Desarrollador Full Stack</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Portafolio profesional de Álvaro Naranjo, Desarrollador Full Stack especializado en Angular, Laravel y soluciones innovadoras." />
-  <meta name="author" content="Álvaro Naranjo" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E
-  %3Cdefs%3E
-    %3ClinearGradient id='grad' x1='0' y1='0' x2='0' y2='1'%3E
-      %3Cstop offset='0%25' stop-color='%231D1F22'/%3E
-      %3Cstop offset='100%25' stop-color='%23292D31'/%3E
-    %3C/linearGradient%3E
-  %3C/defs%3E
-  %3Crect x='6' y='6' width='88' height='88' rx='18' fill='url(%23grad)' stroke='rgba(255,255,255,0.35)' stroke-width='4'/%3E
-  %3Ctext x='50%25' y='62%25' font-size='48' font-weight='600' letter-spacing='1' text-anchor='middle' fill='%23FFFFFF' font-family='Segoe UI, Roboto, Inter, Arial, sans-serif'%3EAN%3C/text%3E
-%3C/svg%3E">
+    content="Portfolio de Álvaro Naranjo, Desarrollador Full Stack. Especializado en Spring Boot, Laravel y Arquitectura Limpia.">
+  <meta name="author" content="Álvaro Naranjo">
+  <title>Álvaro Naranjo | Desarrollador Full Stack</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="style.css" />
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%230f1115'/%3E%3Crect x='5' y='5' width='90' height='90' rx='20' fill='none' stroke='%233b82f6' stroke-width='5'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-weight='900' font-size='50' text-anchor='middle' fill='%23ffffff'%3EA%3Ctspan fill='%233b82f6'%3EN%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+<body class="bg-body-tertiary">
 
-  <nav class="navbar" role="navigation">
-    <div class="navbar-left">Álvaro Naranjo</div>
-    <div class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="navbar-right" id="navbarRight">
-      <a href="#about-me">Sobre Mí</a>
-      <a href="#education">Formación</a>
-      <a href="#softskills">Habilidades</a>
-      <a href="#technologies">Tecnologías</a>
-      <a href="#projects">Proyectos</a>
-      <a href="#contact" class="nav-contact">Contacto</a>
-      <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
-        <i class="bi bi-moon-fill"></i>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold font-heading" href="#">
+        Álvaro<span class="text-primary">.dev</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav gap-3 text-uppercase fs-7 fw-semibold align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre Mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary btn-sm rounded-pill px-4 ms-lg-2 shadow-sm" href="#contacto">Hablemos</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <header id="hero" class="hero">
-    <div class="hero-content">
-      <img src="resources/imgs/yo.jfif" alt="Álvaro Naranjo" class="hero-img" />
+  <header class="min-vh-100 d-flex align-items-center position-relative overflow-hidden pt-5" id="inicio">
+    <div class="bg-gradient-decoration"></div>
 
-      <h1 class="hero-title">
-        <span id="typewriter"></span>
-      </h1>
-      <h2 class="hero-subtitle">Desarrollador Full Stack</h2>
-      <h5>📅 16/01 – 20/01: Realizando ajustes y mejoras || Puede haber errores</h5>
+    <div class="container position-relative z-1">
+      <div class="row align-items-center flex-column-reverse flex-lg-row">
+        <div class="col-lg-7 text-center text-lg-start mt-4 mt-lg-0 animate-up">
+          <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill mb-3 px-3 py-2">
+            Full Stack Developer
+          </span>
+          <h1 class="display-3 fw-bolder mb-3 lh-1 font-heading">
+            Hola, soy <br>
+            <span class="text-gradient">Álvaro Naranjo</span>
+          </h1>
+          <h2 class="h4 text-white fw-normal mb-4">
+            Especialista en Backend & Arquitectura de Software
+          </h2>
+          <p class="lead text-secondary mb-4 col-lg-10 mx-auto mx-lg-0">
+            Desarrollador adaptable con enfoque en <strong>Spring Boot</strong> y <strong>Laravel</strong>.
+            Combino curiosidad y disciplina para crear soluciones robustas, escalables y eficientes.
+          </p>
 
-      <div class="hero-social">
-        <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" target="_blank"
-          rel="noopener noreferrer" aria-label="Mi perfil de LinkedIn">
-          <i class="bi bi-linkedin"></i>
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://github.com/naraanjo" target="_blank" rel="noopener noreferrer"
-          aria-label="Mi perfil de GitHub">
-          <i class="bi bi-github"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="mailto:naranjodev06@gmail.com" aria-label="Enviar un correo">
-          <i class="bi bi-envelope"></i>
-          <span>Email</span>
-        </a>
+          <div class="d-flex gap-3 justify-content-center justify-content-lg-start mb-4">
+            <a href="#proyectos" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold shadow-lg hover-lift">
+              Ver Proyectos
+            </a>
+            <a href="resources/descargas/CV_Alvaro_Naranjo.pdf" download
+              class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold hover-lift">
+              <i class="bi bi-download me-2"></i> Descargar CV
+            </a>
+          </div>
+
+          <div
+            class="hero-social-links d-flex gap-4 justify-content-center justify-content-lg-start align-items-center">
+            <span class="text-secondary small fw-bold text-uppercase ls-1">Conectar:</span>
+            <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" target="_blank"
+              title="LinkedIn" class="social-icon">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:naranjodev06@gmail.com" title="Enviar Email" class="social-icon">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+            <a href="https://github.com/naraanjo" target="_blank" title="GitHub" class="social-icon">
+              <i class="bi bi-github"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="col-lg-5 text-center animate-up" style="animation-delay: 0.2s;">
+          <div class="profile-blob-wrapper">
+            <img src="resources/imgs/yo.jfif" alt="Álvaro Naranjo" class="profile-img img-fluid">
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <main id="main-content">
-    <section id="about-me" class="section about-section">
-      <div class="container">
-        <h2 class="section-title">Sobre Mí</h2>
-        <div class="about-content">
-          <div class="about-details">
-            <p>
-              Soy un desarrollador adaptable, capaz de abordar nuevas tecnologías y entornos con rapidez, integrándome
-              eficazmente en equipos multidisciplinarios.
-            </p>
-            <p>
-              Mi enfoque combina curiosidad, creatividad y disciplina, siempre orientado a optimizar procesos y
-              superar expectativas. Aunque puedo trabajar en distintas áreas del desarrollo, disfruto especialmente del
-              trabajo <strong>backend</strong>, donde puedo centrarme en la lógica, la arquitectura y la eficiencia del
-              sistema.
-            </p>
-            <p>
-              Creo firmemente que la capacidad de aprender y pivotar ante el cambio distingue a un buen profesional,
-              y este es el valor que aporto a cada proyecto.
-            </p>
-
-          </div>
+  <section id="proyectos" class="py-5">
+    <div class="container py-5">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="fw-bold display-6 mb-3 font-heading">Proyectos Destacados</h2>
+          <p class="text-secondary">
+            Una selección de desarrollos Full Stack que abarcan <strong>arquitecturas Backend</strong>, interfaces
+            modernas y sistemas complejos.
+          </p>
         </div>
       </div>
-    </section>
 
-    <section id="education" class="section">
-      <div class="container">
-        <h2 class="section-title">Formación</h2>
-        <div class="timeline-container">
-          <div class="timeline-item">
-            <div class="timeline-dot"><i class="bi bi-book-fill"></i></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">2024 - 2026 </span>
-              <h5>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</h5>
-              <p>Formación oficial enfocada en el desarrollo de software para diversas plataformas,
-                abarcando tanto backend como frontend y aplicaciones móviles.</p>
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm bg-dark-subtle project-card animate-on-scroll">
+            <div class="card-img-top overflow-hidden position-relative group">
+              <img src="resources/imgs/backSpring.png" class="img-fluid w-100 transition-scale"
+                alt="Backend Ecommerce">
+              <div class="overlay d-flex align-items-center justify-content-center">
+                <a href="https://github.com/naraanjo/Backend-tienda-online" target="_blank"
+                  class="btn btn-light rounded-circle p-3 mx-1 hover-scale" aria-label="Ver Código">
+                  <i class="bi bi-github fs-4"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold font-heading text-white">Backend Ecommerce</h5>
+              <p class="card-text text-secondary small flex-grow-1">
+                Tienda online utilizando una <strong>arquitectura limpia</strong> y división por capas. 
+                
+              </p>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="badge tech-badge">Spring Boot</span>
+                <span class="badge tech-badge">Oracle</span>
+                <span class="badge tech-badge">Docker</span>
+              </div>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"><i class="bi bi-translate"></i></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">2025 </span>
-              <h5>Certificación B2 Inglés - Trinity College London</h5>
-              <p>Capacitado para comunicarme en entornos internacionales (91/100)</p>
+        </div>
 
-              <a href="resources/certs/Alvaro-Naranjo-b2.pdf" class="btn" download target="_blank"
-                rel="noopener noreferrer">
-                <i class="bi bi-file-earmark-arrow-down"></i>
-                Descargar Certificado 
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm bg-dark-subtle project-card animate-on-scroll"
+            style="transition-delay: 0.1s;">
+            <div class="card-img-top overflow-hidden position-relative group">
+              <img src="resources/imgs/agriculturaProyect.png" class="img-fluid w-100 transition-scale"
+                alt="Gestión Agrícola">
+              <div class="overlay d-flex align-items-center justify-content-center bg-dark bg-opacity-75">
+                <span class="badge bg-warning text-dark px-3 py-2 fw-bold">
+                  <i class="bi bi-lock-fill me-1"></i> Privado (Contactar)
+                </span>
+              </div>
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold font-heading text-white">Gestión Agrícola & IA</h5>
+              <p class="card-text text-secondary small flex-grow-1">
+                App Multiplataforma para control de cultivos. Incluye módulo de IA para <strong>detección y análisis de
+                  enfermedades</strong> en plantas.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="badge tech-badge">Kotlin</span>
+                <span class="badge tech-badge">Compose</span>
+                <span class="badge tech-badge">IA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm bg-dark-subtle project-card animate-on-scroll"
+            style="transition-delay: 0.2s;">
+            <div class="card-img-top overflow-hidden position-relative group">
+              <img src="resources/imgs/portfolio2026.png" class="img-fluid w-100 transition-scale"
+                alt="Portfolio Personal">
+              <div class="overlay d-flex align-items-center justify-content-center">
+                <a href="https://github.com/naraanjo/Portfolio" target="_blank"
+                  class="btn btn-light rounded-circle p-3 mx-1 hover-scale" aria-label="Ver Código">
+                  <i class="bi bi-github fs-4"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <h5 class="card-title fw-bold font-heading text-white">Marca Personal</h5>
+              <p class="card-text text-secondary small flex-grow-1">
+                Diseño y desarrollo de este portfolio web responsivo, enfocado en UX, interactividad y código limpio.
+              </p>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="badge tech-badge">Bootstrap 5</span>
+                <span class="badge tech-badge">HTML/CSS</span>
+                <span class="badge tech-badge">JS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-5 bg-dark position-relative">
+    <div class="container py-5">
+      <h2 class="fw-bold display-6 mb-5 text-center font-heading">Stack Tecnológico</h2>
+
+      <div class="row g-4">
+
+        <div class="col-md-4 animate-on-scroll">
+          <div class="p-4 rounded-4 border border-secondary-subtle bg-body-tertiary h-100 skill-box">
+            <h4 class="mb-4 text-primary font-heading"><i class="bi bi-server me-2"></i>Backend Core</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <div class="tech-pill"><img src="resources/icons/java-svgrepo-com.svg" width="16" class="me-1"> Java</div>
+              <div class="tech-pill"><img src="resources/icons/spring-svgrepo-com (1).svg" width="16" class="me-1">
+                Spring Boot</div>
+              <div class="tech-pill"><img src="resources/icons/php-svgrepo-com.svg" width="16" class="me-1"> PHP</div>
+              <div class="tech-pill"><img src="resources/icons/laravel-svgrepo-com.svg" width="16" class="me-1"> Laravel
+              </div>
+              <div class="tech-pill"><img src="resources/icons/c.png" width="16" class="me-1"></i> C#</div>
+              <div class="tech-pill"><img src="resources/icons/python.svg" width="16" class="me-1"></i> Python</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 animate-on-scroll" style="transition-delay: 0.1s;">
+          <div class="p-4 rounded-4 border border-secondary-subtle bg-body-tertiary h-100 skill-box">
+            <h4 class="mb-4 text-primary font-heading"><i class="bi bi-window-fullscreen me-2"></i>Front & Mobile</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <div class="tech-pill"><img src="resources/icons/angular-icon-svgrepo-com.svg" width="16" class="me-1">
+                Angular</div>
+              <div class="tech-pill"><img src="resources/icons/boootstrap.png" width="16" class="me-1"></i> Bootstrap</div>
+              <div class="tech-pill"><img src="resources/icons/javascript.svg" width="16" class="me-1"></i> JavaScript</div>
+              <div class="tech-pill"><img src="resources/icons/kotlin.svg" width="16" class="me-1"></i> Kotlin (Mobile)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="p-4 rounded-4 border border-secondary-subtle bg-body-tertiary h-100 skill-box">
+            <h4 class="mb-4 text-primary font-heading"><i class="bi bi-database-gear me-2"></i>Data & Tools</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <div class="tech-pill"><i class="bi bi-database-fill text-danger"></i> MySQL</div>
+              <div class="tech-pill"><img src="resources/icons/oracle.svg" width="16" class="me-1"></i> Oracle</div>
+              <div class="tech-pill"><img src="resources/icons/docker-svgrepo-com.svg" width="16" class="me-1"> Docker
+              </div>
+              <div class="tech-pill"><i class="bi bi-git text-danger"></i> Git</div>
+              <div class="tech-pill"><i class="bi bi-github"></i> GitHub</div>
+              <div class="tech-pill"><img src="resources/icons/jira-svgrepo-com.svg" width="16" class="me-1"></i> Jira</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi" class="py-5">
+    <div class="container py-5">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 animate-on-scroll">
+          <h2 class="fw-bold display-6 mb-4 font-heading">Sobre Mí</h2>
+          <p class="text-secondary lead">
+            Soy un desarrollador <strong>extremadamente adaptable</strong>. Creo firmemente que la capacidad de aprender
+            y pivotar ante el cambio es lo que distingue a un buen profesional.
+          </p>
+          <p class="text-secondary">
+            Mi enfoque combina curiosidad y disciplina. Aunque trabajo en todas las áreas, disfruto especialmente del
+            <strong>Backend</strong>, centrándome en la lógica, la arquitectura y la eficiencia del sistema. Actualmente
+            profundizo en despliegue eficiente y arquitectura limpia.
+          </p>
+
+          <div class="d-flex gap-3 mt-4 flex-wrap">
+            <div class="badge bg-dark-subtle border p-2 text-secondary fw-normal">
+              <i class="bi bi-people-fill text-primary me-1"></i> Trabajo en Equipo
+            </div>
+            <div class="badge bg-dark-subtle border p-2 text-secondary fw-normal">
+              <i class="bi bi-clock-fill text-primary me-1"></i> Gestión del Tiempo
+            </div>
+            <div class="badge bg-dark-subtle border p-2 text-secondary fw-normal">
+              <i class="bi bi-arrow-repeat text-primary me-1"></i> Adaptabilidad
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 offset-lg-1 animate-on-scroll">
+          <h3 class="h4 mb-4 text-primary font-heading">Trayectoria</h3>
+          <div class="ps-lg-3 border-start border-primary border-3">
+
+            <div class="ps-4 mb-5 position-relative">
+              <div
+                class="position-absolute top-0 start-0 translate-middle rounded-circle bg-primary p-2 border border-4 border-dark"
+                style="width: 1rem; height: 1rem;"></div>
+              <span class="badge bg-primary-subtle text-primary mb-2">2024 - 2026</span>
+              <h5 class="fw-bold text-white">Técnico Superior DAM</h5>
+              <p class="text-secondary small mb-0">
+                Desarrollo de Aplicaciones Multiplataforma. Perfil full-stack con experiencia en frontend, backend y
+                Docker.
+              </p>
+            </div>
+
+            <div class="ps-4 mb-5 position-relative">
+              <div
+                class="position-absolute top-0 start-0 translate-middle rounded-circle bg-dark border border-2 border-secondary p-2"
+                style="width: 1rem; height: 1rem;"></div>
+              <span class="badge bg-secondary-subtle text-secondary mb-2">2025</span>
+              <h5 class="fw-bold text-white">Certificación Inglés B2</h5>
+              <p class="text-secondary small mb-0">Trinity College London (91/100). Capacitado para entornos
+                internacionales.</p>
+              <a href="resources/certs/Alvaro-Naranjo-b2.pdf" download
+                class="btn btn-sm btn-link text-decoration-none ps-0 mt-1">
+                <i class="bi bi-download"></i> Descargar Certificado
               </a>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"><i class="bi bi-lightbulb-fill"></i></div>
-            <div class="timeline-content card">
-              <span class="timeline-date">Presente</span>
-              <h5>Aprendizaje Autodidacta</h5>
-              <p>Formación activa en Spring Boot, enfocada en desarrollo backend profesional,
-                arquitectura limpia y despliegue eficiente.</p>
+
+            <div class="ps-4 position-relative">
+              <div
+                class="position-absolute top-0 start-0 translate-middle rounded-circle bg-dark border border-2 border-secondary p-2"
+                style="width: 1rem; height: 1rem;"></div>
+              <span class="badge bg-secondary-subtle text-secondary mb-2">Presente</span>
+              <h5 class="fw-bold text-white">Formación Autodidacta</h5>
+              <p class="text-secondary small mb-0">
+                Especialización constante en Spring Boot, Arquitectura Limpia, Docker y APIs REST escalables.
+              </p>
             </div>
+
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="softskills" class="section">
-      <div class="container">
-        <h2 class="section-title">Habilidades</h2>
-        <div class="cards-container">
-          <div class="card">
-            <i class="bi bi-people-fill card-icon"></i>
-            <h5>Trabajo en Equipo</h5>
-            <p>Capacidad para integrarme en equipos multidisciplinarios</p>
-            <div class="skill-details">
-              <ul>
-                <li>Participación activa en reuniones ágiles y retrospectivas</li>
-                <li>Comunicación efectiva con otros desarrolladores</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card">
-            <i class="bi bi-clock-fill card-icon"></i>
-            <h5>Gestión del Tiempo</h5>
-            <p>Habilidad para organizar tareas por urgencia e importancia</p>
-            <div class="skill-details">
-              <ul>
-                <li>Estimación realista de tiempos de desarrollo</li>
-                <li>Uso de herramientas como Trello o Jira</li>
-                <li>Riguroso con las fechas de entrega</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card">
-            <i class="bi bi-arrow-repeat card-icon"></i>
-            <h5>Adaptabilidad</h5>
-            <p>Mentalidad de crecimiento y adaptación tecnológica</p>
-            <div class="skill-details">
-              <ul>
-                <li><strong>EXTREMADAMENTE</strong> adaptable como sello personal</li>
-                <li>Capacidad para pivotar en diferentes áreas</li>
-                <li>Aprendizaje autodidacta</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card">
-            <i class="bi bi-chat-dots-fill card-icon"></i>
-            <h5>Comunicación</h5>
-            <p>Comunicación clara y acción proactiva definen mi forma de trabajar</p>
-            <div class="skill-details">
-              <ul>
-                <li>Explicación clara de soluciones a clientes y equipos</li>
-                <li>Comunicación fluida en entornos colaborativos</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="technologies" class="section tech-section">
-      <div class="container">
-        <h2 class="section-title">Tecnologías</h2>
-        <div class="tech-container">
-          <div class="tech-icons">
-
-            <div class="tech-item">
-              <img src="resources/icons/spring-svgrepo-com (1).svg" alt="Jira" loading="lazy" />
-              <span class="tech-name">SpringBoot</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/laravel-svgrepo-com.svg" alt="Laravel" loading="lazy" />
-              <span class="tech-name">Laravel</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/angular-icon-svgrepo-com.svg" alt="Angular" loading="lazy" />
-              <span class="tech-name">Angular</span>
-            </div>
-            <div class="tech-item">
-              <img src="resources/icons/boootstrap.png" alt="Bootstrap" loading="lazy" />
-              <span class="tech-name">Bootstrap</span>
-            </div>
-
-
-
-
-
-          </div>
-          <div class="tech-icons">
-            <div class="tech-item">
-              <img src="resources/icons/icons8-java.svg" alt="Java" loading="lazy" />
-              <span class="tech-name">Java</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/c.png" alt="C#" loading="lazy" />
-              <span class="tech-name">C#</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/python.svg" alt="Python" loading="lazy" />
-              <span class="tech-name">Python</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/icons8-kotlin.svg" alt="Kotlin" loading="lazy" />
-              <span class="tech-name">Kotlin</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/php-svgrepo-com.svg" alt="PHP" loading="lazy" />
-              <span class="tech-name">PHP</span>
-            </div>
-
-          </div>
-
-          <div class="tech-icons">
-
-
-            <div class="tech-item">
-              <img src="resources/icons/mysql-logo-svgrepo-com.svg" alt="MySQL" loading="lazy" />
-              <span class="tech-name">MySQL</span>
-            </div>
-
-            <div class="tech-item">
-              <img src="resources/icons/jira-svgrepo-com.svg" alt="Jira" loading="lazy" />
-              <span class="tech-name">Jira</span>
-            </div>
-
-
-
-
-            <div class="tech-item">
-              <img src="resources/icons/github.svg" alt="GitHub" loading="lazy" />
-              <span class="tech-name">GitHub </span>
-            </div>
-            <div class="tech-item">
-              <img src="resources/icons/git.svg" alt="Git" loading="lazy" />
-              <span class="tech-name">Git</span>
-            </div>
-
-              <div class="tech-item">
-              <img src="resources/icons/docker-svgrepo-com.svg" alt="Docker" loading="lazy" />
-              <span class="tech-name">Docker</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Proyectos</h2>
-        <div class="cards-container">
-
-          <div class="card project-card">
-            <img src="resources/imgs/portoflioImg.png" alt="Proyecto Portafolio" loading="lazy" />
-            <h5>Portafolio Personal </h5>
-            <p>Diseño y desarrollo de mi marca personal, enfocado en interactividad y diseño responsive.</p>
-            <p><strong>Tecnologías:</strong> HTML, CSS, JavaScript.</p>
-            <a href="https://github.com/naraanjo/Portfolio" class="btn" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-github"></i>
-              Ver Proyecto
-            </a>
-          </div>
-
-
-          <div class="card project-card">
-            <img src="resources/imgs/ProyectoSpring.png" alt="Proyecto Portafolio" loading="lazy" />
-            <h5>Backend eccommerce </h5>
-            <p>Tienda ecommerce online utilizando una arquitectura limpia y división por capas.
-              
-            </p>
-            <p><strong>Tecnologías:</strong>SpringBoot, Oracle, Docker</p>
-            <a href="https://github.com/naraanjo/Backend-tienda-online" class="btn" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-github"></i>
-              Ver Proyecto
-            </a>
-          </div>
-
-          
-          <div class="card project-card">
-            <img src="resources/imgs/proyectoAgricultura.jfif" alt="Proyecto Portafolio" loading="lazy" />
-            <h5>Sistema de Gestión Agrícola Android e IOS</h5>
-            <p> Sistema de gestión agrícola para el control de cultivos y cosechas.
-              <strong>Detección y análisis de enfermedades en plantas-IA</strong>
-            </p>
-            <p><strong>Tecnologías:</strong>Compose Multiplatform</p>
-            <a  class="btn" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-github"></i>
-              (Repositorio Privado - Contactar)
-            </a>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-      <div class="container">
-        <h2 class="section-title">Contacto</h2>
-        <p class="section-subtitle">¿Tienes un proyecto en mente? ¡Hablemos!</p>
-
-        <div class="contact-container">
-
-          <div class="contact-info">
-            <h3>Conecta</h3>
-            <p>Estoy siempre abierto a discutir nuevas oportunidades, proyectos innovadores o cualquier idea que tengas.
-              No
-              dudes en contactarme.
-            </p>
-
-            <div class="contact-methods">
-              <div class="contact-method">
-                <i class="bi bi-envelope-fill"></i>
-                <div>
-                  <h4>Email</h4>
-                  <a href="mailto:naranjodev06@gmail.com">naranjodev06@gmail.com</a>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="social-links">
-              <div class="contact-links">
-                <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" class="contact-link"
-                  target="_blank" rel="noopener noreferrer" aria-label="Mi perfil de LinkedIn">
-                  <i class="bi bi-linkedin"></i>
-                  <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/naraanjo" class="contact-link" target="_blank" rel="noopener noreferrer"
-                  aria-label="Mi perfil de GitHub">
-                  <i class="bi bi-github"></i>
-                  <span>GitHub</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <form id="contactForm" class="contact-form" action="https://formspree.io/f/xkgqpajo" method="POST">
-            <h3>Envíame un mensaje</h3>
-            <div class="form-group">
-              <label for="name">Nombre Completo</label>
-              <input type="text" id="name" name="name" required placeholder="Tu nombre" />
-            </div>
-            <div class="form-group">
-              <label for="email">Tu Email</label>
-              <input type="email" id="email" name="email" required placeholder="email@ejemplo.com" />
-            </div>
-            <div class="form-group">
-              <label for="message">Mensaje</label>
-              <textarea id="message" name="message" rows="5" required
-                placeholder="Cuéntame sobre tu proyecto..."></textarea>
-            </div>
-            <button type="submit" class="btn submit-btn">Enviar Mensaje</button>
-            <div id="formStatus"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <a href="#hero" id="backToTop" class="back-to-top" aria-label="Volver arriba">
-    <i class="bi bi-arrow-up"></i>
-  </a>
-
-  <footer class="footer">
-    <div class="container">
-      <p> 2025 Álvaro Naranjo</p>
     </div>
-  </footer>
+  </section>
 
+  <section id="contacto" class="py-5 position-relative bg-dark-subtle">
+    <div class="container py-5 text-center animate-on-scroll">
+      <h2 class="display-5 fw-bold mb-3 font-heading">¿Tienes un proyecto en mente?</h2>
+      <p class="text-secondary mb-5 col-lg-6 mx-auto">
+        Estoy abierto a discutir nuevas oportunidades y desafíos técnicos.
+        Si buscas un desarrollador comprometido y adaptable, contáctame.
+      </p>
+
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <a href="mailto:" class="btn btn-primary btn-lg rounded-pill px-5 hover-lift">
+          <i class="bi bi-envelope-fill me-2"></i> Enviar Email
+        </a>
+        <a href="https://www.linkedin.com/in/alvaro-naranjo-rodr%C3%ADguez-177264381/" target="_blank"
+          class="btn btn-outline-light btn-lg rounded-pill px-5 hover-lift">
+          <i class="bi bi-linkedin me-2"></i> LinkedIn
+        </a>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-secondary mb-1 small">O escríbeme directamente a:</p>
+        <div class="d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-envelope text-primary"></i>
+          <span class="fw-bold text-white fs-5">naranjodev06@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <footer class="py-5 text-center bg-dark border-top border-secondary-subtle">
+  <div class="container">
+    <small class="d-block text-light opacity-75 fst-italic">
+      “Aprender no es una fase: es mi sistema operativo. Y está diseñado para escalar.”
+    </small>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
 
